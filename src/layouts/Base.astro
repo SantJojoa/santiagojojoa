@@ -8,6 +8,8 @@ interface Props {
     description: string;
 }
 
+import Analytics from "@vercel/analytics/astro";
+
 const { lang, title, description } = Astro.props;
 const site = Astro.site!; // definido en astro.config.mjs
 const path = Astro.url.pathname.replace(/\/$/, "") || `/${lang}`;
