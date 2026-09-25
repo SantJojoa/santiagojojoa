@@ -1,0 +1,41 @@
+---
+interface Props {
+    eyebrow: string;
+    title?: string;
+    class?: string;
+}
+
+const { eyebrow, title, class: className } = Astro.props;
+const words = title?.split(" ") ?? [];
+---
+
+<div class:list={["max-w-3xl", className]}>
+    <p
+        data-reveal
+        class="text-sm font-medium uppercase tracking-[0.22em] text-accent"
+    >
+        {eyebrow}
+    </p>
+    {
+        title && (
+            <h2
+                data-split-title
+                aria-label={title}
+                class="mt-5 text-heading-lg font-semibold leading-[1.05] tracking-[-0.035em]"
+            >
+                {words.map((word) => (
+                    <>
+                        <span
+                            class="inline-block overflow-hidden pb-[0.18em] align-bottom -mb-[0.18em]"
+                            aria-hidden="true"
+                        >
+                            <span data-split-word class="inline-block">
+                                {word}
+                            </span>
+                        </span>{" "}
+                    </>
+                ))}
+            </h2>
+        )
+    }
+</div>

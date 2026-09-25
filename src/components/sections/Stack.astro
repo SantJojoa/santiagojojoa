@@ -1,0 +1,57 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import { useTranslations, type Lang } from "../../i18n/utils";
+import { techIcons, visibleColor } from "../../data/tech-icons";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang).stack;
+---
+
+<section id="stack" class="px-6 py-32">
+    <div class="mx-auto max-w-6xl">
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} />
+
+        <div class="mt-16 grid gap-5 md:grid-cols-3">
+            {
+                t.groups.map((group) => (
+                    <article data-reveal data-tilt class="glass-1 p-8">
+                        <h3 class="text-lg font-semibold tracking-[-0.01em]">
+                            {group.title}
+                        </h3>
+                        <ul class="mt-6 flex flex-wrap gap-2">
+                            {group.items.map((item) => {
+                                const icon = techIcons[item];
+                                return (
+                                    <li
+                                        class="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 py-1.5 pl-3 pr-3.5 text-sm text-white/80 transition-colors duration-[var(--duration-fast)] hover:border-white/30 hover:text-white"
+                                        style={
+                                            icon
+                                                ? `--brand: ${visibleColor(icon.hex)}`
+                                                : undefined
+                                        }
+                                    >
+                                        {icon && (
+                                            <svg
+                                                viewBox="0 0 24 24"
+                                                class="h-4 w-4 shrink-0 text-white/70 transition-colors duration-[var(--duration-fast)] group-hover:text-(--brand)"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                            >
+                                                <path d={icon.path} />
+                                            </svg>
+                                        )}
+                                        {item}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,174 @@
+---
+import {
+    languages,
+    switchLangPath,
+    useTranslations,
+    type Lang,
+} from "../../i18n/utils";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const links = [
+    { href: `/${lang}#about`, label: t.nav.about },
+    { href: `/${lang}#services`, label: t.nav.services },
+    { href: `/${lang}#projects`, label: t.nav.projects },
+    { href: `/${lang}#security`, label: t.nav.security },
+    { href: `/${lang}#contact`, label: t.nav.contact },
+];
+
+const langs = Object.keys(languages) as Lang[];
+---
+
+<!-- El sticky va en el header: .glass-2 fija position:relative y pisaría a Tailwind. -->
+<header data-nav class="sticky top-4 z-50 h-0 px-4">
+    <nav
+        class="glass-2 nav-solid mx-auto flex max-w-5xl items-center justify-between gap-6 px-6 py-3"
+        aria-label={t.nav.label}
+    >
+        <a
+            href={`/${lang}`}
+            class="font-semibold tracking-[-0.02em] text-white"
+        >
+            Santiago Jojoa
+        </a>
+
+        <ul class="hidden items-center gap-5 text-[13px] md:flex lg:gap-7 lg:text-sm">
+            {
+                links.map((link) => (
+                    <li>
+                        <a
+                            href={link.href}
+                            class="text-white/60 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-apple)] hover:text-white"
+                        >
+                            {link.label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+
+        <div class="flex items-center gap-2">
+        <div
+            class="flex items-center gap-1 text-xs font-medium"
+            role="group"
+            aria-label={t.nav.language}
+        >
+            {
+                langs.map((code) => (
+                    <a
+                        href={switchLangPath(Astro.url.pathname, code)}
+                        hreflang={code}
+                        lang={code}
+                        aria-current={code === lang ? "true" : undefined}
+                        class:list={[
+                            "rounded-full px-2.5 py-1 uppercase transition-colors duration-[var(--duration-fast)] ease-[var(--ease-apple)]",
+                            code === lang
+                                ? "bg-white/15 text-white"
+                                : "text-white/50 hover:text-white",
+                        ]}
+                    >
+                        {code}
+                    </a>
+                ))
+            }
+        </div>
+
+        <!-- Botón de menú (solo móvil) -->
+        <button
+            type="button"
+            data-nav-toggle
+            class="group flex h-9 w-9 items-center justify-center rounded-full md:hidden"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label={t.nav.openMenu}
+            data-label-open={t.nav.openMenu}
+            data-label-close={t.nav.closeMenu}
+        >
+            <span class="relative block h-3 w-5" aria-hidden="true">
+                <span class="absolute left-0 top-0 block h-px w-5 bg-white transition-transform duration-[var(--duration-fast)] ease-[var(--ease-apple)] group-aria-expanded:translate-y-[5.5px] group-aria-expanded:rotate-45"></span>
+                <span class="absolute bottom-0 left-0 block h-px w-5 bg-white transition-transform duration-[var(--duration-fast)] ease-[var(--ease-apple)] group-aria-expanded:-translate-y-[5.5px] group-aria-expanded:-rotate-45"></span>
+            </span>
+        </button>
+        </div>
+
+        <!-- Progreso de lectura de la página -->
+        <span
+            data-progress
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-x-6 bottom-0 h-px origin-left bg-gradient-to-r from-accent to-accent-blue"
+            style="transform: scaleX(0)"></span>
+    </nav>
+
+    <!-- Menú móvil: cerrado = invisible (no enfocable); abierto lo controla el script.
+         El wrapper es el absolute: .glass-2 fija position:relative y lo pisaría. -->
+    <div
+        id="mobile-menu"
+        data-nav-panel
+        class="invisible absolute inset-x-4 top-[4.5rem] -translate-y-2 opacity-0 transition-[opacity,translate,visibility] duration-[var(--duration-fast)] ease-[var(--ease-apple)] md:hidden"
+    >
+        <div
+            class="glass-2 nav-solid mx-auto max-w-5xl p-3"
+            style="background-color: rgb(8, 10, 14)"
+        >
+            <ul class="flex flex-col">
+                {
+                    links.map((link) => (
+                        <li>
+                            <a
+                                href={link.href}
+                                data-nav-link
+                                class="block rounded-2xl px-4 py-3 text-lg font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+</header>
+
+<script>
+    const header = document.querySelector<HTMLElement>("[data-nav]");
+    const toggle = header?.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+    const panel = header?.querySelector<HTMLElement>("[data-nav-panel]");
+
+    if (header && toggle && panel) {
+        const setOpen = (open: boolean) => {
+            toggle.setAttribute("aria-expanded", String(open));
+            toggle.setAttribute(
+                "aria-label",
+                (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ?? "",
+            );
+            panel.classList.toggle("invisible", !open);
+            panel.classList.toggle("opacity-0", !open);
+            panel.classList.toggle("-translate-y-2", !open);
+        };
+        const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
+
+        toggle.addEventListener("click", () => setOpen(!isOpen()));
+
+        // Se cierra al elegir un enlace, con Escape, al tocar fuera o al pasar a escritorio.
+        panel.querySelectorAll("[data-nav-link]").forEach((link) =>
+            link.addEventListener("click", () => setOpen(false)),
+        );
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isOpen()) {
+                setOpen(false);
+                toggle.focus();
+            }
+        });
+        document.addEventListener("pointerdown", (e) => {
+            if (isOpen() && !header.contains(e.target as Node)) setOpen(false);
+        });
+        window
+            .matchMedia("(min-width: 768px)")
+            .addEventListener("change", (e) => e.matches && setOpen(false));
+    }
+</script>

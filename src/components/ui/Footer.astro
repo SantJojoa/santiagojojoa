@@ -1,0 +1,14 @@
+---
+import { useTranslations, type Lang } from "../../i18n/utils";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang).footer;
+---
+
+<footer class="px-6 pb-10 pt-16 text-center text-sm text-white/40">
+    © {new Date().getFullYear()} Santiago Jojoa · {t.rights}
+</footer>

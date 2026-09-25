@@ -1,0 +1,29 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import AnalyzerTool from "./AnalyzerTool.astro";
+import { useTranslations, type Lang } from "../../i18n/utils";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang).security;
+---
+
+<section id="security" class="px-6 py-32">
+    <div class="mx-auto max-w-6xl">
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} />
+        <p
+            data-reveal
+            class="mt-6 max-w-2xl text-body-lg leading-relaxed text-white/60"
+        >
+            {t.body}
+        </p>
+
+        <!-- El analizador se ejecuta aquí mismo: el resultado aparece debajo del formulario. -->
+        <div class="mt-14 max-w-4xl">
+            <AnalyzerTool lang={lang} />
+        </div>
+    </div>
+</section>

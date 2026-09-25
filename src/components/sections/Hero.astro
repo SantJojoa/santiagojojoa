@@ -1,0 +1,68 @@
+---
+import { useTranslations, type Lang } from "../../i18n/utils";
+import SocialLinks from "../ui/SocialLinks.astro";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang).hero;
+---
+
+<section
+    id="top"
+    class="relative flex min-h-[100dvh] items-center justify-center px-6"
+>
+    <div data-hero-content class="mx-auto max-w-6xl pb-28 pt-24 text-center">
+        <p
+            data-hero-fade
+            class="text-sm font-medium uppercase tracking-[0.22em] text-white/60"
+        >
+            {t.eyebrow}
+        </p>
+
+        <h1
+            class="mt-8 text-[clamp(2.25rem,9vw,6.5rem)] font-semibold leading-[1.02] tracking-[-0.045em]"
+        >
+            {
+                t.lines.map((line, i) => (
+                    <span class="-mb-[0.12em] block overflow-hidden">
+                        <span
+                            data-hero-line
+                            class:list={[
+                                "block pb-[0.24em]",
+                                i === t.lines.length - 1 &&
+                                    "bg-gradient-to-r from-accent to-accent-blue bg-clip-text text-transparent",
+                            ]}
+                        >
+                            {line}
+                        </span>
+                    </span>
+                ))
+            }
+        </h1>
+
+        <div data-hero-fade class="mt-10">
+            <SocialLinks lang={lang} />
+        </div>
+    </div>
+
+    <!-- Solo con ratón y altura suficiente. El hijo interno se desvanece con el
+         primer scroll; el externo hace la entrada. -->
+    <div
+        data-hero-fade
+        class="absolute inset-x-0 bottom-8 mx-auto hidden w-fit [@media(hover:hover)_and_(pointer:fine)_and_(min-height:700px)]:block"
+        aria-hidden="true"
+    >
+        <div
+            data-scroll-cue
+            class="flex flex-col items-center gap-3 text-xs uppercase tracking-[0.22em] text-white/50"
+        >
+            <span class="flex h-10 w-6 justify-center rounded-full border border-white/40 pt-2">
+                <span class="scroll-wheel-dot block h-2 w-[3px] rounded-full bg-accent"></span>
+            </span>
+            {t.scroll}
+        </div>
+    </div>
+</section>

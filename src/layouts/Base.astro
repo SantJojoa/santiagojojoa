@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+import Nav from "../components/ui/Nav.astro";
+import { switchLangPath } from "../i18n/utils";
+interface Props {
+    lang: "es" | "en";
+    title: string;
+    description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const site = Astro.site!; // definido en astro.config.mjs
+const path = Astro.url.pathname.replace(/\/$/, "") || `/${lang}`;
+const canonical = new URL(path, site);
+const esUrl = new URL(switchLangPath(path, "es"), site);
+const enUrl = new URL(switchLangPath(path, "en"), site);
+const defaultUrl = esUrl;
+---
+
+<!doctype html>
+<html lang={lang}>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <!-- Marca que hay JS: los estados iniciales de animación dependen de esta clase. -->
+        <script is:inline>
+            document.documentElement.classList.add("js");
+        </script>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+
+        <title>{title}</title>
+        <meta name="description" content={description} />
+
+        <link rel="canonical" href={canonical} />
+
+        <link rel="alternate" hreflang="es" href={esUrl} />
+        <link rel="alternate" hreflang="en" href={enUrl} />
+        <link rel="alternate" hreflang="x-default" href={defaultUrl} />
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:locale"
+            content={lang === "es" ? "es_ES" : "en_US"}
+        />
+    </head>
+
+    <body>
+        <Nav lang={lang} />
+        <slot />
+
+        <script>
+            // Orden importa: Lenis y ScrollTrigger primero, luego las animaciones.
+            import "../scripts/smooth-scroll";
+            import "../scripts/animations";
+        </script>
+    </body>
+</html>

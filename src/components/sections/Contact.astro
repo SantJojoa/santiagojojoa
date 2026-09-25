@@ -1,0 +1,47 @@
+---
+import { useTranslations, type Lang } from "../../i18n/utils";
+import SocialLinks from "../ui/SocialLinks.astro";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang).contact;
+---
+
+<section id="contact" class="px-6 pb-24 pt-40">
+    <div class="mx-auto max-w-4xl text-center">
+        <p
+            data-reveal
+            class="text-sm font-medium uppercase tracking-[0.22em] text-accent"
+        >
+            {t.eyebrow}
+        </p>
+        <h2
+            data-contact-title
+            class="mt-6 text-[clamp(3rem,10vw,8rem)] font-semibold leading-[0.98] tracking-[-0.05em]"
+        >
+            {t.title}
+        </h2>
+        <p
+            data-reveal
+            class="mx-auto mt-8 max-w-xl text-body-lg leading-relaxed text-white/60"
+        >
+            {t.body}
+        </p>
+        <div data-reveal class="mt-10">
+            <a
+                href={`mailto:${t.email}`}
+                data-magnetic
+                class="inline-flex rounded-full bg-white px-8 py-4 font-medium text-black transition-[scale] duration-[var(--duration-fast)] ease-[var(--ease-apple)] hover:scale-[1.04]"
+            >
+                {t.cta}
+            </a>
+            <p class="mt-4 text-sm text-white/40">{t.email}</p>
+        </div>
+        <div data-reveal class="mt-12">
+            <SocialLinks lang={lang} />
+        </div>
+    </div>
+</section>

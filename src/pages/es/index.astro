@@ -1,0 +1,28 @@
+---
+import Base from "../../layouts/Base.astro";
+import Footer from "../../components/ui/Footer.astro";
+import Hero from "../../components/sections/Hero.astro";
+import About from "../../components/sections/About.astro";
+import Services from "../../components/sections/Services.astro";
+import Projects from "../../components/sections/Projects.astro";
+import Security from "../../components/sections/Security.astro";
+import Stack from "../../components/sections/Stack.astro";
+import Contact from "../../components/sections/Contact.astro";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "es";
+const t = useTranslations(lang);
+---
+
+<Base lang={lang} title={t.meta.title} description={t.meta.description}>
+    <main>
+        <Hero lang={lang} />
+        <About lang={lang} />
+        <Services lang={lang} />
+        <Stack lang={lang} />
+        <Projects lang={lang} />
+        <Security lang={lang} />
+        <Contact lang={lang} />
+    </main>
+    <Footer lang={lang} />
+</Base>

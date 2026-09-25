@@ -1,0 +1,301 @@
+import type { Dictionary } from "./es";
+
+export const en: Dictionary = {
+    meta: {
+        title: "Santiago Jojoa — Systems Engineer",
+        description:
+            "Portfolio of Santiago Jojoa: systems engineer, software developer, consultant and cybersecurity enthusiast.",
+    },
+    nav: {
+        label: "Main navigation",
+        about: "About",
+        services: "Services",
+        projects: "Projects",
+        security: "Cybersecurity",
+        contact: "Contact",
+        language: "Language",
+        openMenu: "Open menu",
+        closeMenu: "Close menu",
+    },
+    hero: {
+        eyebrow: "Santiago Jojoa · Systems Engineer",
+        lines: ["Software.", "Consulting.", "Cybersecurity."],
+        ctaGithub: "View my GitHub",
+        ctaLinkedin: "View my LinkedIn",
+        scroll: "Scroll to explore",
+    },
+    about: {
+        eyebrow: "About",
+        statement:
+            "I'm a systems engineer and software developer. I build modern web products, support teams as a consultant, and study offensive and defensive security so that everything that gets built, holds up. I'm also proficient in English.",
+    },
+    services: {
+        eyebrow: "Services",
+        title: "What I do.",
+        items: [
+            {
+                title: "Software development",
+                description:
+                    "Custom web applications and systems: fast, maintainable and well designed, from idea to production.",
+            },
+            {
+                title: "Consulting",
+                description:
+                    "Architecture, technical review and guidance to help you make better technology decisions.",
+            },
+            {
+                title: "Cybersecurity",
+                description:
+                    "Attack surface review, best practices and hardening for web applications and sites.",
+            },
+        ],
+    },
+    projects: {
+        eyebrow: "Projects",
+        title: "Featured work.",
+        visit: "Visit site",
+        inProgress: "In development",
+        items: [
+            {
+                tag: "IDSN",
+                title: "FEVRIPS · IDSN",
+                description: "RIPS system of the Departmental Health Institute of Nariño (IDSN).",
+                url: "https://fevrips.idsn.gov.co/",
+            },
+            {
+                tag: "IDSN",
+                title: "SIVAT · IDSN",
+                description: "IDSN web system with login-based access.",
+                url: "https://sivat.idsn.gov.co/login",
+            },
+            {
+                tag: "Website",
+                title: "Rastreo Satelital",
+                description: "Website for Sistemas Virtuales: GPS tracking and vehicle monitoring services.",
+                url: "https://rastreosatelital.vercel.app",
+            },
+            {
+                tag: "E-commerce",
+                title: "Store21",
+                description: "Online streetwear store with catalog, cart and checkout via WhatsApp.",
+                url: "https://store21.shop",
+            },
+            {
+                tag: "App",
+                title: "Max — Finance App",
+                description: "Personal finance application.",
+                url: "",
+            },
+        ],
+    },
+    security: {
+        eyebrow: "Cybersecurity",
+        title: "Security as part of the design.",
+        body: "Hands-on practice and my own tools to understand how a system is attacked and how it is defended.",
+    },
+    stack: {
+        eyebrow: "Tools",
+        title: "What I work with.",
+        groups: [
+            {
+                title: "Development",
+                items: ["TypeScript", "React", "Astro", "NestJS", "Tailwind CSS", "Node.js", "Python", "SQL"],
+            },
+            {
+                title: "Security",
+                items: ["Burp Suite", "Nmap", "Wireshark", "OWASP", "Kali Linux"],
+            },
+            {
+                title: "Infrastructure",
+                items: ["Linux", "Docker", "Git", "GitHub Actions", "Vercel"],
+            },
+        ],
+    },
+    contact: {
+        eyebrow: "Contact",
+        title: "Let's talk.",
+        body: "Have a project, need consulting or a security review? Drop me a line.",
+        cta: "Email me",
+        email: "santiago.jojoan@icloud.com",
+    },
+    analyzer: {
+        form: {
+            label: "Site address",
+            placeholder: "example.com",
+            submit: "Analyze",
+            submitting: "Analyzing…",
+        },
+        notice:
+            "Passive analysis: one plain GET request is made to read the public response headers and the certificate. No ports are scanned and no vulnerabilities are probed. Use it on your own sites or with the owner's permission.",
+        privacy: "Addresses and results are not stored in any database.",
+        results: {
+            title: "Result",
+            score: "Score",
+            outOf: "out of 100",
+            analyzed: "Analyzed address",
+            httpStatus: "HTTP response",
+            redirects: "Redirects",
+            duration: "Duration",
+            tls: "TLS",
+            daysLeft: "days of validity",
+            issuer: "Issuer",
+            noTls: "Unencrypted",
+            statusLabels: { pass: "Good", warn: "Improvable", fail: "Risk", info: "Info" },
+            why: "Why it matters",
+            fix: "How to fix it",
+            rawHeaders: "Detected headers",
+            noHeaders: "No security headers found.",
+            cookies: "Cookies",
+            cookieFlags: "Secure · HttpOnly · SameSite",
+            analyzeAnother: "Analyze another site",
+            disclaimer:
+                "The grade is indicative: it measures the configuration visible from outside with a single request and does not replace a security audit.",
+            categories: {
+                transport: "Transport and HTTPS",
+                headers: "Security headers",
+                cookies: "Cookies",
+                disclosure: "Exposed information",
+                other: "Other",
+            },
+            grades: {
+                "A+": "Excellent",
+                A: "Very good",
+                B: "Good",
+                C: "Improvable",
+                D: "Poor",
+                F: "Critical",
+            },
+        },
+        errors: {
+            invalid_url: "That address isn't valid. Enter something like example.com or https://example.com.",
+            unsupported_protocol: "Only http:// and https:// addresses are supported.",
+            unsupported_port: "Only the standard web ports (80 and 443) are analyzed.",
+            blocked_host: "That address points to an internal or reserved network and can't be analyzed.",
+            dns_failed: "The domain couldn't be resolved. Check that it's spelled correctly.",
+            connect_failed: "Couldn't connect to the site.",
+            timeout: "The site took too long to respond.",
+            too_many_redirects: "The site redirects too many times.",
+            rate_limited: "Too many attempts. Wait a moment and try again.",
+            forbidden_origin: "Request not allowed.",
+            bad_request: "The request couldn't be processed.",
+            payload_too_large: "The request couldn't be processed.",
+            internal: "An unexpected error occurred. Please try again later.",
+            network: "Couldn't reach the analysis server.",
+        },
+        codes: {
+            absent: "Not present",
+            "plain-http": "The final site is served over HTTP",
+            downgrade: "Redirects from HTTPS to HTTP",
+            "serves-plain-http": "Serves content over HTTP without redirecting",
+            "port-80-closed": "Port 80 closed (no redirect)",
+            "include-subdomains": "includes subdomains",
+            preload: "preload",
+            "short-max-age": "max-age too short (< 180 days)",
+            "no-tls": "No TLS connection",
+            "legacy-tls": "Obsolete TLS version",
+            "invalid-cert": "Invalid certificate",
+            "expiring-soon": "Expires soon",
+            "report-only": "Report-only mode: blocks nothing",
+            "weak-value": "Weak or non-standard value",
+            "leaky-value": "Value that leaks the full URL",
+            "no-corp": "CORP missing",
+            "no-coop": "COOP missing",
+            "no-cookies": "The site sets no cookies on this request",
+            "version-exposed": "Exposes the version",
+            exposed: "Exposes the technology",
+            "wildcard-credentials": "Wildcard (*) together with credentials",
+            wildcard: "Wildcard (*): normal for public content",
+            "no-script-src": "No script restriction",
+            "unsafe-inline": "Allows inline scripts ('unsafe-inline')",
+            "unsafe-eval": "Allows eval ('unsafe-eval')",
+            "wildcard-source": "Script sources too broad (*, http:, data:)",
+            "object-src-open": "object-src not restricted",
+            "no-base-uri": "base-uri missing",
+        },
+        findings: {
+            https: {
+                title: "Encrypted connection (HTTPS)",
+                why: "Without HTTPS, anyone on the network (public Wi-Fi, an ISP) can read or modify what travels between the visitor and the site, including passwords and sessions.",
+                fix: "Serve the whole site over HTTPS with a valid certificate (for example, Let's Encrypt) and avoid redirecting from HTTPS to HTTP.",
+            },
+            http_redirect: {
+                title: "HTTP to HTTPS redirect",
+                why: "If someone visits http:// and the site doesn't redirect, that first request travels unencrypted and can be intercepted or tampered with.",
+                fix: "Configure the server to answer HTTP with a 301 redirect to the HTTPS version.",
+            },
+            hsts: {
+                title: "HSTS (Strict-Transport-Security)",
+                why: "Tells the browser to always use HTTPS with this site, preventing downgrade attacks (SSL stripping) on later visits.",
+                fix: "Add Strict-Transport-Security: max-age=31536000; includeSubDomains (and consider preload) once the whole site works over HTTPS.",
+            },
+            tls_version: {
+                title: "TLS version",
+                why: "Old versions (TLS 1.0 and 1.1) have known weaknesses and modern browsers already reject them. Only the negotiated version is visible here, not every version the server accepts.",
+                fix: "Enable TLS 1.2 and 1.3 and disable earlier ones on the server or CDN.",
+            },
+            certificate: {
+                title: "TLS certificate",
+                why: "An invalid or expired certificate makes the browser show warnings and trains users to ignore them.",
+                fix: "Renew the certificate before it expires (automate renewal) and make sure it covers the domain and the full chain.",
+            },
+            csp: {
+                title: "Content-Security-Policy",
+                why: "Limits which scripts and resources the page can load; it is the strongest defense against XSS (code injection).",
+                fix: "Define a policy that restricts script-src (ideally with nonces or hashes), includes object-src 'none' and base-uri 'self', and avoids 'unsafe-inline' and 'unsafe-eval'. Try it first with Content-Security-Policy-Report-Only.",
+            },
+            frame_protection: {
+                title: "Clickjacking protection",
+                why: "Without it, another site can embed this page in an invisible iframe and trick the user into clicking buttons unknowingly.",
+                fix: "Add Content-Security-Policy: frame-ancestors 'none' (or 'self'), or X-Frame-Options: DENY / SAMEORIGIN.",
+            },
+            nosniff: {
+                title: "X-Content-Type-Options",
+                why: "Stops the browser from “guessing” a file's type, which can turn an innocent upload into executable code.",
+                fix: "Add X-Content-Type-Options: nosniff.",
+            },
+            referrer_policy: {
+                title: "Referrer-Policy",
+                why: "Controls how much of the source URL is sent to other sites; URLs containing tokens or personal data can leak.",
+                fix: "Use Referrer-Policy: strict-origin-when-cross-origin or a stricter one.",
+            },
+            permissions_policy: {
+                title: "Permissions-Policy",
+                why: "Lets you disable browser features (camera, microphone, geolocation…) the page doesn't need, reducing the damage if code is injected.",
+                fix: "Add a policy that disables what you don't use, for example Permissions-Policy: camera=(), microphone=(), geolocation=().",
+            },
+            cross_origin: {
+                title: "Cross-origin isolation (COOP / CORP)",
+                why: "They help isolate the page from other windows and sites, mitigating side-channel attacks such as Spectre and cross-tab leaks.",
+                fix: "Add Cross-Origin-Opener-Policy: same-origin and Cross-Origin-Resource-Policy: same-origin (or same-site), checking they don't break integrations such as payments or popups.",
+            },
+            cookies: {
+                title: "Secure cookies",
+                why: "Without Secure they travel over HTTP; without HttpOnly an injected script can steal them; without SameSite they are more exposed to CSRF.",
+                fix: "Mark session cookies with Secure; HttpOnly; SameSite=Lax (or Strict) and use the __Host- prefix where possible.",
+            },
+            server_header: {
+                title: "Server header",
+                why: "Publishing the software and its exact version helps an attacker look up known vulnerabilities for that version.",
+                fix: "Hide or trim the Server header (for example, server_tokens off in Nginx or ServerTokens Prod in Apache).",
+            },
+            tech_disclosure: {
+                title: "Exposed technology",
+                why: "Headers such as X-Powered-By reveal the language or framework and its version, making targeted attacks easier.",
+                fix: "Remove X-Powered-By, X-AspNet-Version and similar in the framework or server configuration.",
+            },
+            security_txt: {
+                title: "security.txt",
+                why: "A standard file (RFC 9116) telling researchers how to report vulnerabilities responsibly.",
+                fix: "Publish /.well-known/security.txt with at least a Contact: and an Expires: field.",
+            },
+            cors: {
+                title: "CORS (Access-Control-Allow-Origin)",
+                why: "A * wildcard together with credentials, or reflecting any origin, can let other sites read authenticated responses.",
+                fix: "Allow only specific trusted origins and avoid Access-Control-Allow-Origin: * together with Access-Control-Allow-Credentials: true.",
+            },
+        },
+    },
+    footer: {
+        rights: "All rights reserved.",
+    },
+};

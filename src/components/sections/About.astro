@@ -1,0 +1,39 @@
+---
+import { useTranslations, type Lang } from "../../i18n/utils";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang).about;
+const words = t.statement.split(" ");
+---
+
+<!-- Sección alta + contenido sticky: al hacer scroll las palabras se
+     iluminan una a una (estilo Apple). sticky, no fixed. -->
+<section id="about" class="relative h-[260vh]">
+    <div class="sticky top-0 flex h-screen items-center px-6">
+        <div class="mx-auto w-full max-w-4xl">
+            <p
+                data-reveal
+                class="text-sm font-medium uppercase tracking-[0.22em] text-accent"
+            >
+                {t.eyebrow}
+            </p>
+            <p
+                class="mt-8 text-[clamp(1.75rem,4.4vw,3.6rem)] font-semibold leading-[1.15] tracking-[-0.03em]"
+            >
+                {
+                    words.map((word) => (
+                        <>
+                            <span data-scrub-word class="inline-block">
+                                {word}
+                            </span>{" "}
+                        </>
+                    ))
+                }
+            </p>
+        </div>
+    </div>
+</section>
