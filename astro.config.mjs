@@ -9,9 +9,13 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
 
-  site: 'https://santiagojojoa.com',
+  site: 'https://santiagojojoa.vercel.app',
   // Solo /api/analyze corre en servidor (prerender = false); el resto se genera estático.
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   redirects: {
     '/': '/es',
   },

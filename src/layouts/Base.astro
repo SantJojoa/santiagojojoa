@@ -17,6 +17,8 @@ const canonical = new URL(path, site);
 const esUrl = new URL(switchLangPath(path, "es"), site);
 const enUrl = new URL(switchLangPath(path, "en"), site);
 const defaultUrl = esUrl;
+
+``;
 ---
 
 <!doctype html>
@@ -47,6 +49,7 @@ const defaultUrl = esUrl;
             property="og:locale"
             content={lang === "es" ? "es_ES" : "en_US"}
         />
+        <Analytics />
     </head>
 
     <body>
